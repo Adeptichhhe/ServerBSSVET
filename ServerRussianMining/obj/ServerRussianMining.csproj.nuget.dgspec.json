@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj": {}
+    "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj": {
+    "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj",
+        "projectUniqueName": "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj",
         "projectName": "ServerRussianMining",
-        "projectPath": "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj",
+        "projectPath": "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj",
         "packagesPath": "C:\\Users\\adept\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining\\obj\\",
+        "outputPath": "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adept\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "netcoreapp6.0",
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "netcoreapp6.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "DynamicLanguageRuntime": {
               "target": "Package",
