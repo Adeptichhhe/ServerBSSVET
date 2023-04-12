@@ -125,7 +125,8 @@ namespace ServerRussianMining
             SHA.rooms.Add(room);
             try
             {
-                listener = new TcpListener(IPAddress.Parse("127.0.0.1"), port);
+                Console.Write("IP: ");string ip = Console.ReadLine();
+                listener = new TcpListener(IPAddress.Parse(ip), port);
                 listener.Start();
                 Console.WriteLine();
                 Console.Write("- Waiting for connection...");
