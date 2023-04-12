@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DJyN6mKCAM98g70a6CUmfiI+5SuFc3ZSVq5n4ZxQQzUrtienG+MIqzRC//DA8qhUSS5LLWbmyny9nM8owiQ3VA==",
+  "dgSpecHash": "5NI6oSjLg9yQSinnA/y4CbIw3B/OjIM0kcIkgOgphnlsHE2lrnj+82a6CA2oXeBkDREffMz4FvWtS4oeTLGhIg==",
   "success": true,
-  "projectFilePath": "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj",
+  "projectFilePath": "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adept\\.nuget\\packages\\dynamiclanguageruntime\\1.3.2\\dynamiclanguageruntime.1.3.2.nupkg.sha512",
     "C:\\Users\\adept\\.nuget\\packages\\ironpython\\2.7.12\\ironpython.2.7.12.nupkg.sha512",

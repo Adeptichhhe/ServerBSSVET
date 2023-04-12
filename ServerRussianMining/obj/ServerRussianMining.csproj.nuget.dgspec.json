@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj": {}
+    "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining.csproj": {}
   },
   "projects": {
-    "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj": {
+    "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj",
+        "projectUniqueName": "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining.csproj",
         "projectName": "ServerRussianMining",
-        "projectPath": "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\ServerRussianMining.csproj",
+        "projectPath": "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\ServerRussianMining.csproj",
         "packagesPath": "C:\\Users\\adept\\.nuget\\packages\\",
-        "outputPath": "D:\\BSSVET\\source\\repos\\ServerRussianMining\\ServerRussianMining\\obj\\",
+        "outputPath": "C:\\Users\\adept\\Documents\\GitHub\\ServerBSSVET\\ServerRussianMining\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adept\\AppData\\Roaming\\NuGet\\NuGet.Config",
