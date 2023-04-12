@@ -1,1 +1,0 @@
-﻿SELECT * FROM [Users] WHERE Name = 'Admwtpgj' and Password = 'Admwtpgj'

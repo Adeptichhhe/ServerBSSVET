@@ -1,1 +1,0 @@
-﻿UPDATE [Users] SET Money -= 5  WHERE Name = 'Admwtpgj' and Password = 'Admwtpgj'
