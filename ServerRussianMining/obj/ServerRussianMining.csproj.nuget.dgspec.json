@@ -76,6 +76,10 @@
               "target": "Package",
               "version": "[4.8.3, )"
             },
+            "System.Diagnostics.DiagnosticSource": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
             "System.Dynamic.Runtime": {
               "target": "Package",
               "version": "[4.3.0, )"
