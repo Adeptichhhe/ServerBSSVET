@@ -194,8 +194,6 @@ namespace ServerRussianMining
         static void Main(string[] args)
         {
             SQL_Connect.Connect();
-            Room room = new Room();
-            SHA.rooms.Add(room);
             try
             {
                 Console.Write("-IP: ");string ip = Console.ReadLine();
@@ -321,6 +319,10 @@ namespace ServerRussianMining
                                 Return.Type = TypeData.Vetka;
                                 Return.Data = Data_Checker(JsonConvert.DeserializeObject<Vetka_Dronov>(Responce.Data.ToString()));
                                 break;
+                            case TypeData.StartCheck:
+                                Return.Type = TypeData.StartCheck;
+                                Return.Data = StartChecker();
+                                break;
                             default:
                                 Console.Write("-Close ");
                                 client.Close();
@@ -337,6 +339,12 @@ namespace ServerRussianMining
                     break;
                 }
             }
+        }
+        public Room StartChecker()
+        {
+            Console.WriteLine(myRoom.names[0]);
+            return myRoom;
+            
         }
         public Vetka_Dronov Data_Checker(Vetka_Dronov data1) 
         {
@@ -502,11 +510,11 @@ namespace ServerRussianMining
             string command = "";
             if (data1.Search_Name != "")
             {
-                command = $"SELECT * FROM Table WHERE Rota = '{data1.Search_Name}'";
+                command = $"SELECT * FROM Rots WHERE Rota = '{data1.Search_Name}'";
             }
             else 
             {
-                command = $"SELECT TOP 50 * FROM Table";
+                command = $"SELECT TOP 50 * FROM Rots";
             }
             var rec = DB.Receve(command);
             for (int a = 0;a< rec.Count;a++) 
@@ -539,9 +547,11 @@ namespace ServerRussianMining
             }
             return data1;
         }
+        private Room myRoom = new Room();
+        private int index_Room = 0;
         public Games GameData(Game data1)
         {
-            var a = SHA.rooms[0];
+            var a = myRoom;
             for (int b = 0;b<3;b++) 
             {
                 a.posTRA[data1.MyNUM, b] = data1.MyTra[b];
@@ -554,7 +564,8 @@ namespace ServerRussianMining
                 a.moduls[data1.MyNUM,b] = data1.MyModuls[b];
             }
             a.attack[data1.MyNUM] = data1.Attack;
-            SHA.rooms[0].HP[data1.minusHP[0]] -= data1.minusHP[1];
+            a.Flag += data1.Flag;
+            a.HP[data1.minusHP[0]] -= data1.minusHP[1];
             Games games = new Games();
             games.Flag = a.Flag;
             games.Names = a.names;
@@ -566,6 +577,18 @@ namespace ServerRussianMining
             games.OtherRotBash = a.posROTBash;
             games.Chat = a.Chat;
             games.OtherEnd_Poz = a.End_Poz;
+            if (a.Flag < 0 || a.Flag > 100) 
+            {
+                try
+                {
+                    if (SHA.rooms.Contains(myRoom))
+                    {
+                        Console.WriteLine("-Room Removed | SCOPE: " + myRoom.Flag);
+                        SHA.rooms.Remove(myRoom);
+                    }
+                }
+                catch {}
+            }
             return games;
         }
         public void SQL_Z(string Name,string Z)
@@ -576,26 +599,64 @@ namespace ServerRussianMining
         {
             DB.Receve(SQL_Z);
         }
-        public StartRoom StartG(StartRoom data1) 
+        public StartRoom StartG(StartRoom data1)
         {
             DB.Receve($"UPDATE Users SET Online = '{DateTime.Now}' WHERE Name = '{data1.Name}'");
             StartRoom rom = new StartRoom();
-            for (int a =0;a< SHA.rooms[0].names.Length;a++) 
+            if (SHA.rooms.Count > 0)
             {
-                if (data1.Name == SHA.rooms[0].names[a]) 
+                bool Enter_Room = false;
+                for (int b = 0; b < SHA.rooms.Count; b++)
                 {
-                    rom.myNum = a;
-                    SHA.rooms[0].HP[a] = data1.HP;
-                    break;
+                    for (int a = 0; a < SHA.rooms[b].names.Length; a++)
+                    {
+                        if (data1.Name == SHA.rooms[b].names[a])
+                        {
+                            rom.myNum = a;
+                            SHA.rooms[b].HP[a] = data1.HP;
+                            SHA.rooms[b].dronNames[a] = data1.DronName;
+                            Console.WriteLine("- " + rom.myNum + ")Connect " + data1.Name);
+                            myRoom = SHA.rooms[b];
+                            index_Room = b;
+                            Enter_Room = true;
+                            break;
+                        }
+                    }
+                    if (Enter_Room == true) { break; }
+                    if (Enter_Room == false)
+                    {
+                        for (int a = 0; a < SHA.rooms[b].names.Length; a++)
+                        {
+                            if (SHA.rooms[b].names[a] == null)
+                            {
+                                rom.myNum = a;
+                                SHA.rooms[b].names[a] = data1.Name;
+                                SHA.rooms[b].HP[a] = data1.HP;
+                                SHA.rooms[b].dronNames[a] = data1.DronName;
+                                Console.WriteLine("- " + rom.myNum + ")Connect " + data1.Name);
+                                myRoom = SHA.rooms[b];
+                                index_Room = b;
+                                Enter_Room = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (Enter_Room == true) {break; }
+                    if (Enter_Room == false)
+                    {
+                        Room room = new Room();
+                        SHA.rooms.Add(room);
+                        Console.WriteLine("-Add new Room");
+                        StartG(data1);
+                        break;
+                    }
                 }
-                if (SHA.rooms[0].names[a] == null)
-                {
-                    rom.myNum = a;
-                    SHA.rooms[0].names[a] = data1.Name;
-                    SHA.rooms[0].HP[a] = data1.HP;
-                    Console.WriteLine("- "+ rom.myNum +")Connect " + data1.Name);
-                    break;
-                }
+            }
+            else {
+                Room room = new Room();
+                SHA.rooms.Add(room);
+                Console.WriteLine("-Add new Room");
+                StartG(data1);
             }
             return rom;
         }
@@ -617,7 +678,7 @@ namespace ServerRussianMining
             {
                 pocket.Soldats = SQL($"SELECT * FROM Users WHERE Gildiya = '{data1.Name}'");
                 pocket.Zayavli = SQL($"SELECT * FROM Users WHERE Gildiya = '{data1.Name + "@@@Z"}'");
-                var rec = DB.ReceveTable($"SELECT * FROM Table WHERE Rota = '{data1.Name}'");
+                var rec = DB.ReceveTable($"SELECT * FROM Rots WHERE Rota = '{data1.Name}'");
                 pocket.Name = rec[0].Rota;
                 pocket.LVL = rec[0].LVL;
                 pocket.Pulemet = rec[0].Pulemet;
@@ -700,8 +761,9 @@ namespace ServerRussianMining
     public class Room
     {
         public float[,] End_Poz = new float[14,3];
-        public int Flag = 0;
+        public int Flag = 50;
         public string[] names = new string[14];
+        public string[] dronNames = new string[14];
         public int[] HP = new int[14];
         public float[,] posTRA = new float[14, 3];
         public float[,] posROT = new float[14, 3];
@@ -729,6 +791,7 @@ namespace ServerRussianMining
         public int myNum = 0;
         public int HP = 0;
         public int rezhim = 0;
+        public string DronName;
     }
     public enum TypeData 
     {
@@ -743,7 +806,8 @@ namespace ServerRussianMining
        Chat,
        Money,
        Buy,
-       Vetka
+       Vetka,
+       StartCheck
     }
     public class BaceResponce
     {
@@ -778,6 +842,7 @@ namespace ServerRussianMining
         public bool[] MyModuls;
         public bool Attack;
         public int MyNUM;
+        public int Flag;
     }
     public class Games
     {
