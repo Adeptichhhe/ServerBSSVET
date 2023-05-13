@@ -342,9 +342,8 @@ namespace ServerRussianMining
         }
         public Room StartChecker()
         {
-            Console.WriteLine(myRoom.names[0]);
+            Console.WriteLine(myRoom.dronNames[0]);
             return myRoom;
-            
         }
         public Vetka_Dronov Data_Checker(Vetka_Dronov data1) 
         {
