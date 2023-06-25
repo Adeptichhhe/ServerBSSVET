@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Qiwi.BillPayments.Json.Newtonsoft</name>
+    </assembly>
+    <members>
+        <member name="T:Qiwi.BillPayments.Json.Newtonsoft.NewtonsoftMapper">
+            <inheritdoc />
+            <summary>
+                Newtonsoft JSON serializer mapper.
+                https://www.newtonsoft.com/json
+            </summary>
+        </member>
+        <member name="F:Qiwi.BillPayments.Json.Newtonsoft.NewtonsoftMapper._settings">
+            <summary>
+                The JSON serializer settings.
+            </summary>
+        </member>
+        <member name="M:Qiwi.BillPayments.Json.Newtonsoft.NewtonsoftMapper.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Qiwi.BillPayments.Json.Newtonsoft.NewtonsoftMapper.#ctor(Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+                The constructor.
+            </summary>
+            <param name="settings">The JSON serializer settings.</param>
+        </member>
+        <member name="M:Qiwi.BillPayments.Json.Newtonsoft.NewtonsoftMapper.WriteValue(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Qiwi.BillPayments.Json.Newtonsoft.NewtonsoftMapper.ReadValue``1(System.String)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
